@@ -38,12 +38,8 @@
 			$results = $sql->select("SELECT * FROM teste WHERE id = :ID", array(":ID"=>$id));
 
 			if(count($results) > 0){
-				
-				$row = $results[0];
 
-				$this->setId($row['id']);
-				$this->setNome($row['nome']);
-				$this->setSenha($row['senha']);
+				$this->setData($results[0]);
 
 			}
 		}
@@ -69,17 +65,37 @@
 			$results = $sql->select("SELECT * FROM teste WHERE senha = :PASSWORD AND nome = :LOGIN", array(":LOGIN"=>$login, ":PASSWORD"=>$senha));
 
 			if(count($results) > 0){
-				
-				$row = $results[0];
 
-				$this->setId($row['id']);
-				$this->setNome($row['nome']);
-				$this->setSenha($row['senha']);
+				$this->setData($results[0]);
 
 			}else{
 				throw new Exception("Login ou Senha não conferem");
 				
 			}
+		}
+
+		public function setData($data){
+
+			$this->setId($data['id']);
+			$this->setNome($data['nome']);
+			$this->setSenha($data['senha']);
+		}
+
+		public function insert(){
+			$sql = new Sql();
+
+			$results = $sql->select("CALL sp_teste_insert(:LOGIN, :PASSWORD)", array(":LOGIN"=>$this->getNome(), ":PASSWORD"=>$this->getSenha()));
+
+			if (count($results) > 0 ) {
+				
+				$this->setData($results[0]);
+			}
+		}
+
+		public function __construct($nome = "", $senha = ""){
+
+			$this->setNome($nome);
+			$this->setSenha($senha);
 		}
 
 		public function __toString(){
