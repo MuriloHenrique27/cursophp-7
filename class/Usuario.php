@@ -102,6 +102,16 @@
 			$sql->query("UPDATE teste SET nome = :LOGIN, senha = :PASSWORD WHERE id = :ID", array(":LOGIN"=>$this->getNome(), ":PASSWORD"=>$this->getSenha(), ':ID'=>$this->getID()));
 		}
 
+		public function delete(){
+			$sql = new Sql();
+
+			$sql->query("DELETE FROM teste WHERE id = :ID", array(':ID'=>$this->getId()));
+
+			$this->setId(0);
+			$this->setNome("");
+			$this->setSenha("");
+		}
+
 		public function __construct($nome = "", $senha = ""){
 
 			$this->setNome($nome);

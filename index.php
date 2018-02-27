@@ -38,11 +38,21 @@
 
 	echo $aluno;*/
 
-	$usuario = new Usuario();
+	//Alterar Usuário
+	/*$usuario = new Usuario();
 
 	$usuario->loadByID(7);
 
 	$usuario->update("Ejail Rodrigues", "123456");
+
+	echo $usuario;*/
+
+	//Deletar usuário
+
+	$usuario = new Usuario();
+
+	$usuario->loadByID(3);
+	$usuario->delete();
 
 	echo $usuario;
 
