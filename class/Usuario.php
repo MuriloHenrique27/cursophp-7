@@ -92,6 +92,16 @@
 			}
 		}
 
+		public function update($nome, $senha){
+
+			$this->setNome($nome);
+			$this->setSenha($senha);
+
+			$sql = new Sql();
+
+			$sql->query("UPDATE teste SET nome = :LOGIN, senha = :PASSWORD WHERE id = :ID", array(":LOGIN"=>$this->getNome(), ":PASSWORD"=>$this->getSenha(), ':ID'=>$this->getID()));
+		}
+
 		public function __construct($nome = "", $senha = ""){
 
 			$this->setNome($nome);

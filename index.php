@@ -31,9 +31,19 @@
 	$usuario->login("user","12345");
 	echo $usuario;*/
 
-	$aluno = new Usuario("Ejail", "12345");
+	//Cadastrando um novo usuário
+	/*$aluno = new Usuario("Ejail", "12345");
 
 	$aluno->insert();
 
-	echo $aluno;
+	echo $aluno;*/
+
+	$usuario = new Usuario();
+
+	$usuario->loadByID(7);
+
+	$usuario->update("Ejail Rodrigues", "123456");
+
+	echo $usuario;
+
 ?>
